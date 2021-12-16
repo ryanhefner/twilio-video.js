@@ -10,7 +10,7 @@ const {
   LocalVideoTrack
 } = require('./media/track/es5');
 
-const MediaStreamTrack = require('@twilio/webrtc').MediaStreamTrack;
+const TwilioMediaStreamTrack = require('@twilio/webrtc').MediaStreamTrack;
 const Log = require('./util/log');
 const { DEFAULT_LOG_LEVEL, DEFAULT_LOGGER_NAME } = require('./util/constants');
 const workaround180748 = require('./webaudio/workaround180748');
@@ -77,7 +77,7 @@ let createLocalTrackCalls = 0;
  * });
  *
  */
-function createLocalTracks(options) {
+function createLocalTracks(options: any) {
   const isAudioVideoAbsent =
     !(options && ('audio' in options || 'video' in options));
 
@@ -115,7 +115,7 @@ function createLocalTracks(options) {
     return Promise.resolve(options.tracks);
   }
 
-  const extraLocalTrackOptions = {
+  const extraLocalTrackOptions: any = {
     audio: options.audio && options.audio.name
       ? { name: options.audio.name }
       : {},
@@ -153,15 +153,15 @@ function createLocalTracks(options) {
     ? workaround180748(log, options.getUserMedia, mediaStreamConstraints)
     : options.getUserMedia(mediaStreamConstraints);
 
-  return mediaStreamPromise.then(mediaStream => {
+  return mediaStreamPromise.then((mediaStream: any) => {
     const mediaStreamTracks = mediaStream.getAudioTracks().concat(mediaStream.getVideoTracks());
 
     log.info('Call to getUserMedia successful; got MediaStreamTracks:',
       mediaStreamTracks);
 
-    return mediaStreamTracks.map(mediaStreamTrack => asLocalTrack(mediaStreamTrack, Object.assign(
+    return mediaStreamTracks.map((mediaStreamTrack: any) => asLocalTrack(mediaStreamTrack, Object.assign(
       extraLocalTrackOptions[mediaStreamTrack.kind], localTrackOptions)));
-  }, error => {
+  }, (error: any) => {
     log.warn('Call to getUserMedia failed:', error);
     throw error;
   });
@@ -186,4 +186,4 @@ function createLocalTracks(options) {
  *   are not provided.
  */
 
-module.exports = createLocalTracks;
+export default createLocalTracks;
