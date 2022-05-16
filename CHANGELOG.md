@@ -13,9 +13,9 @@ New Features
 const { connect, createLocalAudioTrack } = require('twilio-video');
 
 // create a local audio track and have it
-// use 3rd party library for noise cancellation processing.
+// use krisp library for noise cancellation processing.
 const localAudioTrack = await Video.createLocalAudioTrack({
-  noiseCancellationOptions: { vendor: 'rnnoise', sdkAssetsPath: '/noisecancellation//rnnoise' }
+  noiseCancellationOptions: { vendor: 'krisp', sdkAssetsPath: '/noisecancellation/krisp' }
 });
 
 // publish the track to a room
