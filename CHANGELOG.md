@@ -2,12 +2,12 @@ The Twilio Programmable Video SDKs use [Semantic Versioning](http://www.semver.o
 
 **Version 1.x reached End of Life on September 8th, 2021.** See the changelog entry [here](https://www.twilio.com/changelog/end-of-life-complete-for-unsupported-versions-of-the-programmable-video-sdk). Support for the 1.x version ended on December 4th, 2020.
 
-2.22.0 (In Progress)
+2.23.0 (In Progress)
 ====================
 New Features
 ------------
 
-- This pilot release adds  support for 3rd party noise cancellation solutions. You need to host twilio approved 3rd party libraries on your web server to enable noise cancellation. Please contact us to get hold of these files. Once hosted on your web server you can use them to process local audio track as follows
+- This pilot release adds support for 3rd party noise cancellation solutions. You need to host twilio approved 3rd party libraries on your web server to enable noise cancellation. Please contact us to get hold of these files. Once hosted on your web server you can use them to process local audio track as follows
 
 ```ts
 const { connect, createLocalAudioTrack } = require('twilio-video');
@@ -35,6 +35,16 @@ function updateNoiseCancellation(enable: boolean) {
 }
 
 ```
+2.21.2 (June 1, 2022)
+=====================
+
+Bug Fixes
+---------
+
+- Fixed an issue where some extraneous errors were logged to console when a video track was stopped. (VIDEO-9511)
+- Fixed an issue where the `dimensionsChanged` event was not firing when the track dimensions first became available. (VIDEO-3576)
+- Removed references to node dependencies that causes build errors on Angular and Vue. (VIDEO-9282)
+- Fixed an issue where incorrect device was detected when using iPad in Desktop Website mode. (VIDEO-8282)
 
 2.21.1 (March 22, 2022)
 =======================
